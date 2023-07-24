@@ -1,0 +1,76 @@
+Creer une base de donnee car_location
+mysql -root -p;
+CREATE DATABASE car_location
+
+Mettre dessus /  
+USE car_location;
+
+Creer une table user
+    id entier non signé clé primaire auto increment 
+    email chaine de caractere 255 unique 
+    mpd chaine de caractere 255 
+    username chaine de caractere 255
+    admin boolean 
+
+CREATE TABLE user ( 
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) UNIQUE NOT NULL, 
+    mdp VARCHAR(255) NOT NULL ,
+    username VARCHAR(255), 
+    admin BOOLEAN
+    );
+
+// Affiche la structure de ma table 
+     DESCRIBE user;
+
+
+Creer une table car 
+    id entier non signé clé primaire auto increment 
+    name chaine de caractere 255 unique 
+    description text
+    image chaine de caractere 255 
+    price float 
+
+CREATE TABLE car ( 
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL, 
+    description TEXT, 
+    image VARCHAR(255), 
+    price DECIMAL
+    );
+
+    ------------------------------------
+
+Creer une table contact 
+    id entier non signé clé primaire auto increment 
+    email chaine de caractere 255 
+    content text
+    date DATETIME
+
+CREATE TABLE contact ( 
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL, 
+    content TEXT, 
+    date DATETIME
+    );
+
+------------------------------------------------
+Creer une table reservation 
+    id entier non signé clé primaire auto increment 
+    date_start DATE
+    date_end DATE
+    total_price DECIMAL
+    id_user entier non signé clé primaire auto increment (user lié)
+    id_car entier non signé clé primaire auto increment (user lié)
+
+CREATE TABLE reservation ( 
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+    date_start DATE,    
+    date_end DATE, 
+    id_user INT UNSIGNED,    -> ( un champs user à été creer et a été relier avec le user du haut faisant une clé secondaire )
+    CONSTRAINT fk_user_id FOREIGN KEY (id_user) REFERENCES user (id),
+    id_car INT UNSIGNED,       -> ( un champs user à été creer et a été relier avec le user du haut faisant une clé secondaire )  
+    CONSTRAINT fk_car_id FOREIGN KEY (id_car) REFERENCES car (id)
+    );
+
+A la fin Exit 

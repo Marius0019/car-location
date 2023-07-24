@@ -1,0 +1,106 @@
+----------------- CONFIGURATION -----------------
+git config --global user.name 'Mps'
+git config --global user.email'marius_ps@outlook.fr'   
+    // Ajoute de la couleur
+git config --global color.ui true
+    // Initialise le fichier sur studio visual code
+git config --global core.editor 'code --wait'
+    // Ouvre le fichier de configuration 
+git config --global --edit 
+
+----------------- INITIALISATION -----------------
+
+Git init > initialiser le projet
+
+git status > savoir ou en est le fichier ( avoir l'etat des status)
+
+
+----------------- Commit -----------------
+Standing area >>>>> Zone de transite
+
+git add [+ le nom du fichier entre les '']
+git add . [sauvegarde tous les fichier] 
+
+git commit -m 'message'> sauvegarde du projet ( le nom pour ce repérer)
+
+le tiret - est un flag 
+
+//Visualiser les commits
+git log > Permet de voir les commits ( sauvegarde )
+ git log --oneline > Permet de voir les commits ( sauvegarde) sur 2 ligne ( plus simple) 
+ >>> Pour avoir les numero des commits "
+
+ git --amend > Ca met à jour l'ancinne version  
+
+
+
+ U > underfined 
+ A > Ajouter
+ M > Modifier c
+Q > cest pour sortir des commits 
+
+ git checkout [id commit] // pour naviguer entre les commmits mettre ; le numero
+
+ git checkout [nom de la branche] // Pour revenir au dernier commit 
+
+
+----------------- Branch  -----------------
+
+git branch >> Permet de Visualiser la branch
+git branch dev (c'est le nom de la branche 'dev')>> Creer une branche
+git switch >>> Si 
+git switch master >>> Si je veux changer de branche
+
+
+// Avant de fusioner il faut switcher de branche ( git switch master)
+git merge >> Utliser pour fusionner des beanche
+git merge master  >> Si je veux fusioner / Envoyer mes modifications sur une branche 
+
+git branch (nom du fichier qu'on veux ajouter) > ajouter branche
+
+
+// On se met sur la branche qui veux recuperer  les modifications de l'autre branche
+git merge master  >> Si je veux fusioner / Envoyer mes modifications sur une branche
+
+Creer un conflit sur les branches ( quand tu effectue des modifications à l'intéreiru du texte ) pour résoudre 
+
+git branch -m>> Renommer la branche
+git branch-d >> Supprimer une branhce
+
+----------------- RESTORE  -----------------
+
+git restore ''> Restaure le fichier jusqu'à son dernier commit 
+git restore --staged .\nomdufichier >> Enleve de la standing area ca l'enleve du git add
+
+git revert --continue >>>
+git revert >>> (rajouter le nom recuperer dans  git revert --continue ) une opération d'annulation vers l'avant qui fournit un moyen sûr d'annuler les changements. 
+
+cd ../ > Dans le terminal de windows, reculer 
+
+
+--------------------------------
+git clone 'url' >> cloner le fichier sur le git
+>> // Permet de faire une copie d'un projet 
+---------------------------
+
+git remote add (name) (url)>> Permet de créer une connexion avec un depot distant
+
+git push -u orignin main >> Pour envoyer le contenu du depot local  vers le depot distant en liant les branches  avec -u (upstream)
+(-p / remplace l'url) à faire la toute premiere fois 
+
+git push >> pousser la branche// Pour envoyer le contenu du depot local ( svc ) vers le depot distant (le github)
+
+git pull (nom de l'url) (nom de la branche) >> Avant de pusher vers une branche, on recommande de recuperer les modifications de la branche distante
+
+git pull origin dev >> Exemple pour recuperer la branch dev du serveur distant
+
+----------------- .gitignore -----------------
+// Nous pouvons creer un fichier .gitignore qui permet de specifier qui ne pourront pas etre suivi par le projet 
+.gitignore 
+
+
+----------------- TAG -----------------
+
+git tag >> Afficher les tag de notre projet (nom du tag) (id/numero du commit) Ecrire git tag V2.0 
+
+git show (nom) >> Visualiser un tag 
