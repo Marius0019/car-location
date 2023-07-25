@@ -4,9 +4,7 @@ namespace App\Core;
 
 use \App\Controller\Front\HomeController;
 use \App\Controller\Front\ContactController;
-
-require_once '../src/Controller/Front/ContactController.php';
-require_once '../src/Controller/Front/HomeController.php';
+use \App\Controller\Front\CarController;
 
 class Router
 {
@@ -17,18 +15,25 @@ class Router
     {
         // Ajoute des routes dans le constructeur, donc à l'initailisation de l'objet
         $this->add_route('/', function () {
-            $this->currentController = new HomeController(); // Créé une instance du controlleur d'accueil
+            $this->currentController = new HomeController(); // Créé une instance (d'objet) du controlleur d'accueil
             $this->currentController->index(); // Appelle la méthode index du controleur d'accueil
         });
         // Route pour la page contact avec un parametre id
         $this->add_route('/contact/{id}', function ($params) { // On peut passer les eventuels paramètres à la fonction
-            $this->currentController = new ContactController();
+            $this->currentController = new ContactController(); // Appelle la méthode index 
+            
             $this->currentController->index($params);
         });
         $this->add_route('/contact/form', function () {
-            $this->currentController = new ContactController();
+            $this->currentController = new ContactController();  // Créé une instance (d'objet) 
             $this->currentController->saveForm();
         });
+        $this->add_route('/car/{test}', function ($params) {
+            $this->currentController = new CarController();
+            $this->currentController->index($params);
+        });
+
+        // Ajouter une route /car/{id}, function creera une objet de type CarController et il appellera la method index() {require_once templates->front>car.php H1 Bienvenue dans la page des voitures}
     }
 
     private function add_route(string $route, callable $closure)
@@ -43,11 +48,11 @@ class Router
     public  function execute()
     {
         $requestUri = $_SERVER['REQUEST_URI']; // Récupère l'URL de la requete
-        $finalPath = str_replace('/car-location', '', $requestUri); // Supprime le dossier racine pour obtenir le chemin final
+        $finalPath = str_replace('/cars-location', '', $requestUri); // Supprime le dossier racine pour obtenir le chemin final
 
         foreach ($this->routes as $key => $closure) {
-            if (preg_match($key, $finalPath, $matches)) {
-                array_shift($matches);
+            if (preg_match($key, $finalPath, $matches)) { // Regarde si il y'a une clé existe
+                array_shift($matches); 
                 $closure($matches); // Appelle la fonction associée à la route avec les eventuels paramètres capturés
                 return;
             }
