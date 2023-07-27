@@ -13,9 +13,3 @@ class Autoloader
         });
     }
 }
-
-// substr
-
-// $str = "Hello, App!";
-// $new_str = preg_replace("/App/", "src", $str);
-// echo $new_str;

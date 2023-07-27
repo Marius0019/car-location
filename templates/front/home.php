@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <div>
-    <?php 
-    foreach ($cars as $car) {
-    ?>
-        <h1><?= $car['name']; ?></h1>
-        <p><?= $car['description']; ?></p>
-        <img src="./car-location/public/img"<?= $car['image']; ?> alt="">
-        <a href="/car-location/contact-form" <?= $car['id']; ?>>Réserver</a>
-    <?php 
-    }
-    ?>
+<?php
+require_once '../templates/includes/header.php'
+?>
+<section class="container py-3">
+    <h1>Nos voitures</h1>
+    <div class="row flex-wrap justify-content-center">
+        <?php
+        foreach ($cars as $car) {
+        ?>
+            <div class="card m-2" style="width:18rem;">
+                <img src="/car-location/public/img/<?= $car['image']; ?>" alt="Une image de " class="card-img-top">
+                <div class="card-body">
+                    <h2 card-title><?= $car['name']; ?></h2>
+                    <p class="card-text">
+                        <?= $car['description']; ?> euros
+                    </p>
+                    <p>
+                        <?= $car['price']; ?>
+                    </p>
+                    <a href="/car-location/reservation/<?= $car['id']; ?>" class="btn btn-outline-success">reserver</a>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
     </div>
-</body>
-
-</html>
+</section>
+<?php
+require_once '../templates/includes/footer.php'
+?>

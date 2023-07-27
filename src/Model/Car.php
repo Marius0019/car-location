@@ -1,17 +1,24 @@
-<?php 
-
+<?php
 
 namespace App\Model;
-// require_once 'App\Model';
 
-class Car 
+use App\Model\AbstractModel;
+
+class Car extends AbstractModel
 {
-public function getCars($pdo)
-{
-    $stmt = $pdo->prepare ('SELECT * FROM car');
-    $stmt->execute();
-    return $stmt->fetchAll();
+    public function getCars()
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM car');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getCarById($id)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM car WHERE id = :id;');
+        $stmt->execute([
+            ':id' => $id
+        ]);
+        return $stmt->fetch();
+    }
 }
-
-} 
-
